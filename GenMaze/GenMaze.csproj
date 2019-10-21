@@ -50,7 +50,6 @@
     <Compile Include="MazeFileUtil.cs" />
     <Compile Include="Maze.cs" />
     <Compile Include="MazeNotCreatedException.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

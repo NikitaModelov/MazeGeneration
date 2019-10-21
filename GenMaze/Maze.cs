@@ -24,7 +24,7 @@ namespace GenMaze
 
                 FillingMaze();
 
-                GenerationOfMaze();
+                GenerationMaze();
             }
             else
             {
@@ -32,7 +32,7 @@ namespace GenMaze
             }
         }
 
-        private void GenerationOfMaze()
+        private void GenerationMaze()
         {
             var startCell = Fields[1][1];
 
@@ -95,6 +95,7 @@ namespace GenMaze
         private List<Cell> GetUnvisitedCell()
         {
             var unvisitedCell = new List<Cell>();
+
             foreach (var row in Fields)
             {
                 foreach (var cell in row)

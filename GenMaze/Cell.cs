@@ -19,8 +19,6 @@ namespace GenMaze
         public int X { get; }
         public int Y { get; }
 
-        private List<String> collection;
-
         public Cell(int x, int y, Status status = Status.Wall)
         {
             StatusCell = status;
