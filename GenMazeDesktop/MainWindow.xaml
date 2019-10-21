@@ -1,0 +1,79 @@
+﻿<Window x:Class="GenMazeDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GenMazeDesktop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Fill="#FFEAEAEA" Grid.Column="1"/>
+
+        <Grid HorizontalAlignment="Stretch"
+              VerticalAlignment="Top" 
+              Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Ширина: " Margin="0,0,4,0"
+                   Grid.Row="0" Grid.Column="0"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                <TextBox x:Name="inputWidth" Margin="0,2,0,0"
+                     Style="{StaticResource TextBoxCustom}"/>
+                <Rectangle Fill="Black" Height="1"/>
+            </StackPanel>
+            <Label Content="Высота: " Margin="0,0,4,0"
+                    Grid.Row="1" Grid.Column="0"/>
+            <StackPanel  Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                <TextBox x:Name="inputHeight" Margin="0,2,0,0"
+                         Style="{StaticResource TextBoxCustom}"/>
+                <Rectangle Fill="Black" Height="1"/>
+            </StackPanel>
+            <Button Grid.Row="2" 
+                    Click="GenerationMaze_Click"
+                    Content="Сгенерировать"
+                    Margin="12"
+                    Grid.ColumnSpan="2" 
+                    Height="30"/>
+            <Button Grid.Row="3"
+                    Content="Сохранить в файл"
+                    Margin="12"
+                    Click="SaveMaze_Click"
+                    Grid.ColumnSpan="2"
+                    Height="30"/>
+            <Button Grid.Row="4"
+                    Content="Сохранить изображение"
+                    Margin="12"
+                    Click="SaveMazePng_Click"
+                    Grid.ColumnSpan="2"
+                    Height="30"/>
+
+
+        </Grid>
+        
+            
+        
+
+        <Grid Grid.Column="1" x:Name="MazeUI" 
+              Height="auto"
+              Width="auto"
+              HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+
+    </Grid>
+</Window>
