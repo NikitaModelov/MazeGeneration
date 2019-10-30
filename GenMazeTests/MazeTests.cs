@@ -41,6 +41,7 @@ namespace GenMaze.Tests
         public void ExceptionMaze(int width, int height)
         {
             Assert.ThrowsException<MazeNotCreatedException>(() => new Maze(width, height));
+            
         }
 
     }

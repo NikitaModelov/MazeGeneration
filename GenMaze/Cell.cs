@@ -26,20 +26,20 @@ namespace GenMaze
             Y = y;
         }
 
-        public List<Cell> GetNeighbours(Maze currentMaze)
+        public List<Cell> GetNeighbours(IReadOnlyList<IReadOnlyList<Cell>> fields)
         {
             var neighbours = new List<Cell>();
-            if (Y - 2 > 0 && currentMaze.GetMaze()[X][Y - 2].StatusCell is Status.NotVisitedField)
-                neighbours.Add(currentMaze.GetMaze()[X][Y - 2]);
+            if (Y - 2 > 0 && fields[X][Y - 2].StatusCell is Status.NotVisitedField)
+                neighbours.Add(fields[X][Y - 2]);
 
-            if (Y + 2 < currentMaze.Width && currentMaze.GetMaze()[X][Y + 2].StatusCell is Status.NotVisitedField)
-                neighbours.Add(currentMaze.GetMaze()[X][Y + 2]);
+            if (Y + 2 < fields[0].Count && fields[X][Y + 2].StatusCell is Status.NotVisitedField)
+                neighbours.Add(fields[X][Y + 2]);
 
-            if (X - 2 > 0 && currentMaze.GetMaze()[X - 2][Y].StatusCell is Status.NotVisitedField)
-                neighbours.Add(currentMaze.GetMaze()[X - 2][Y]);
+            if (X - 2 > 0 && fields[X - 2][Y].StatusCell is Status.NotVisitedField)
+                neighbours.Add(fields[X - 2][Y]);
 
-            if (X + 2 < currentMaze.Height && currentMaze.GetMaze()[X + 2][Y].StatusCell is Status.NotVisitedField)
-                neighbours.Add(currentMaze.GetMaze()[X + 2][Y]);
+            if (X + 2 < fields.Count && fields[X + 2][Y].StatusCell is Status.NotVisitedField)
+                neighbours.Add(fields[X + 2][Y]);
 
             return neighbours;
         }

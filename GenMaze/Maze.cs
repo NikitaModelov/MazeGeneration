@@ -8,7 +8,7 @@ namespace GenMaze
 {
     public class Maze
     {
-        private List<List<Cell>> Fields { get; }
+        private IReadOnlyList<IReadOnlyList<Cell>> Fields { get; }
         public int Height { get; }
         public int Width { get; }
 
@@ -16,13 +16,11 @@ namespace GenMaze
         {
             if (height >= 3 && width >= 3)
             {
-                Fields = new List<List<Cell>>();
-
                 Height = height;
 
                 Width = width;
 
-                FillingMaze();
+                Fields = FillingMaze();
 
                 GenerationMaze();
             }
@@ -34,6 +32,7 @@ namespace GenMaze
 
         private void GenerationMaze()
         {
+
             var startCell = Fields[1][1];
 
             var currentCell = startCell;
@@ -48,13 +47,13 @@ namespace GenMaze
 
             do
             {
-                var neighboursCount = currentCell.GetNeighbours(this).Count;
+                var neighboursCount = currentCell.GetNeighbours(Fields).Count;
 
                 if (neighboursCount != 0)
                 {
                     cells.Push(currentCell);
 
-                    neighbourCell = currentCell.GetNeighbours(this)[random.Next(0, neighboursCount)];
+                    neighbourCell = currentCell.GetNeighbours(Fields)[random.Next(0, neighboursCount)];
 
                     RemoveWall(currentCell, neighbourCell);
 
@@ -110,24 +109,27 @@ namespace GenMaze
             return unvisitedCell;
         }
 
-        private void FillingMaze()
+        private List<List<Cell>> FillingMaze()
         {
+            var fields = new List<List<Cell>>(); 
             for (var i = 0; i < Height; i++)
             {
-                Fields.Add(new List<Cell>());
+                fields.Add(new List<Cell>());
                 for (var j = 0; j < Width; j++)
                 {
                     if (i % 2 != 0 && j % 2 != 0 &&
                         (i < Height - 1 && j < Width - 1))
                     {
-                        Fields[i].Add(new Cell(i, j, Status.NotVisitedField));
+                        fields[i].Add(new Cell(i, j, Status.NotVisitedField));
                     }
                     else
                     {
-                        Fields[i].Add(new Cell(i, j));
+                        fields[i].Add(new Cell(i, j));
                     }
                 }
             }
+
+            return fields;
         }
 
         public string PrintMaze()
@@ -145,7 +147,7 @@ namespace GenMaze
             return maze.ToString();
         }
 
-        public List<List<Cell>> GetMaze()
+        public IReadOnlyList<IReadOnlyList<Cell>> GetMaze()
         {
             return Fields;
         }

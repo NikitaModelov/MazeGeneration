@@ -8,7 +8,6 @@ namespace GenMaze
 {
      public class MazeNotCreatedException : ApplicationException
      {
-
         public MazeNotCreatedException() { }
 
         public MazeNotCreatedException(string message) : base(message) { }
