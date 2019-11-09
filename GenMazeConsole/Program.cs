@@ -81,8 +81,6 @@ namespace GenMazeConsole
             int width = int.Parse(Console.ReadLine());
 
             Maze maze = new Maze(height, width);
-
-            Console.WriteLine(maze.PrintMaze());
         }
     }
 }

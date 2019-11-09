@@ -42,7 +42,7 @@ namespace GenMazeDesktop
                 {
                     MazeUI.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
 
-                    Cell cell = maze.GetMaze()[row][column];
+                    Cell cell = maze.GetMaze()[row, column];
 
                     Rectangle field = new Rectangle();
 
@@ -64,8 +64,7 @@ namespace GenMazeDesktop
         {
             if (int.TryParse(inputWidth.Text, out int width) && int.TryParse(inputHeight.Text, out int heigth))
             {
-                maze = new Maze(width, width);
-                CreateMazeUI(maze);
+                CreateMazeUI(new GenerationMaze().GetGeneratedMaze(heigth, width));
             }
 
         }

@@ -31,7 +31,7 @@ namespace GenMaze
         {
             using (var streamWriter = new StreamWriter(new FileStream(path, FileMode.Create)))
             {
-                streamWriter.Write(maze.PrintMaze());
+                //streamWriter.Write(maze.PrintMaze());
                 return true;
             }
         }
