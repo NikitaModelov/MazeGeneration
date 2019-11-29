@@ -27,9 +27,6 @@ namespace GenMaze
             Y = y;
         }
 
-        //в maze
-
-
         public string GetCoordCell()
         {
             return $"{X};{Y}";

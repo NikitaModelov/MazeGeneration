@@ -64,7 +64,7 @@ namespace GenMazeDesktop
         {
             if (int.TryParse(inputWidth.Text, out int width) && int.TryParse(inputHeight.Text, out int heigth))
             {
-                CreateMazeUI(new GenerationMaze().GetGeneratedMaze(heigth, width));
+                CreateMazeUI(new MazeFactory().GetGeneratedMaze(heigth, width));
             }
 
         }
