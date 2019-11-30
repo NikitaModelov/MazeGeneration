@@ -11,7 +11,6 @@ namespace GenMaze
         private Cell[,] Fields { get; }
         public int Height { get { return Fields.GetLength(0); } }
         public int Width { get { return Fields.GetLength(1); } }
-
         public Maze(int height, int width)
         {
             if (height >= 3 && width >= 3)
@@ -32,8 +31,7 @@ namespace GenMaze
             {
                 for (var j = 0; j < width; j++)
                 {
-                    if (i % 2 != 0 && j % 2 != 0 &&
-                        (i < height - 1 && j < width - 1))
+                    if (i % 2 != 0 && j % 2 != 0 && (i < height - 1 && j < width - 1))
                     {
                         fields[i, j] = new Cell(i, j, Status.NotVisitedField);
                     }
