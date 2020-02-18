@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GenMaze
+﻿namespace GenMaze
 {
     public enum Status
     {
@@ -27,16 +20,9 @@ namespace GenMaze
             Y = y;
         }
 
-        public string GetCoordCell()
-        {
-            return $"{X};{Y}";
-        }
-
         public override string ToString()
         {
             return StatusCell is Status.Wall ? "■" : "*";
-        }
-
-
+        }   
     }
 }

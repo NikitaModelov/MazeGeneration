@@ -1,10 +1,6 @@
 ﻿using GenMaze;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenMazeConsole
 {
@@ -16,12 +12,12 @@ namespace GenMazeConsole
                 "FILE_MODE - для записи в файл и чтения из файла\n" +
                 "CONSOLE_MODE - для ввода и вывода в консоле");
 
-            string command = Console.ReadLine().ToLower();
+            var command = Console.ReadLine().ToLower();
 
             try
             {
                 switch (command)
-                {
+                { 
                     case "file_mode":
                         FileModeGenerationMaze();
                         break;
@@ -40,32 +36,30 @@ namespace GenMazeConsole
 
         }
 
-        static void FileModeGenerationMaze()
+        private static void FileModeGenerationMaze()
         {
-            // TODO: Сделать проверку на правильность пути
-
             Console.Write("Введите путь файла для входных данных: ");
-            string PathInput = Console.ReadLine();
+            var pathInput = Console.ReadLine();
 
             Console.Write("Введи путь файла для записи данных: ");
-            string PathOutput = Console.ReadLine();
+            var pathOutput = Console.ReadLine();
 
-            if (Path.GetExtension(PathInput) != ".txt" || !File.Exists(PathInput))
+            if (Path.GetExtension(pathInput) != ".txt" || !File.Exists(pathInput))
             {
-                throw new Exception($"{PathInput} is not found or file extension has invalid extension.");
+                throw new Exception($"{pathInput} is not found or file extension has invalid extension.");
             }
 
-            if (Path.GetExtension(PathOutput) != ".txt")
+            if (Path.GetExtension(pathOutput) != ".txt")
             {
-                throw new Exception($"{PathOutput} is not found or file extension has invalid extension.");
+                throw new Exception($"{pathOutput} is not found or file extension has invalid extension.");
             }
 
-            MazeFileUtil class1 = new MazeFileUtil();
+            var class1 = new MazeFileUtil();
 
-            string[] values = class1.FileReader(PathInput);
-            Maze maze = new Maze(int.Parse(values[0]), int.Parse(values[1]));
+            var values = class1.FileReader(pathInput);
+            var maze = new Maze(int.Parse(values[0]), int.Parse(values[1]));
 
-            class1.FileWriter(PathOutput, maze);
+            class1.FileWriter(pathOutput, maze);
 
             Console.WriteLine("Генерация завершена.");
 
@@ -75,12 +69,12 @@ namespace GenMazeConsole
         {
 
             Console.Write("Введите высоту лабиринта: ");
-            int height = int.Parse(Console.ReadLine());
+            var height = int.Parse(Console.ReadLine());
 
             Console.Write("Введите ширину лабиринта: ");
-            int width = int.Parse(Console.ReadLine());
+            var width = int.Parse(Console.ReadLine());
 
-            Maze maze = new Maze(height, width);
+            var maze = new Maze(height, width);
         }
     }
 }

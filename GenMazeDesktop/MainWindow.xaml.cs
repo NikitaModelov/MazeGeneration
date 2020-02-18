@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GenMaze;
 using Microsoft.Win32;
@@ -20,15 +11,13 @@ namespace GenMazeDesktop
 {
     public partial class MainWindow : Window
     {
-
-        Maze maze;
-
+        private Maze maze;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void CreateMazeUI(Maze maze)
+        private void CreateMazeUi(Maze maze)
         {
             MazeUI.Children.Clear();
             MazeUI.ColumnDefinitions.Clear();
@@ -62,9 +51,9 @@ namespace GenMazeDesktop
 
         private void GenerationMaze_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(inputWidth.Text, out int width) && int.TryParse(inputHeight.Text, out int heigth))
+            if (int.TryParse(inputWidth.Text, out var width) && int.TryParse(inputHeight.Text, out var height))
             {
-                CreateMazeUI(new MazeFactory().GetGeneratedMaze(heigth, width));
+                CreateMazeUi(new MazeFactory().Generate(height, width));
             }
 
         }
@@ -74,8 +63,6 @@ namespace GenMazeDesktop
             if (maze != null)
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-
                 if (saveFileDialog1.ShowDialog() == true)
                 {
                     MazeFileUtil class1 = new MazeFileUtil();
@@ -88,11 +75,11 @@ namespace GenMazeDesktop
         {
             if (maze != null)
             {
-                RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(1280, 720, 96, 96, PixelFormats.Pbgra32);
+                var renderTargetBitmap = new RenderTargetBitmap(1280, 720, 96, 96, PixelFormats.Pbgra32);
                 renderTargetBitmap.Render(MazeUI);
-                PngBitmapEncoder pngImage = new PngBitmapEncoder();
+                var pngImage = new PngBitmapEncoder();
                 pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                var saveFileDialog1 = new SaveFileDialog();
 
 
                 if (saveFileDialog1.ShowDialog() == true)

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GenMaze
+﻿namespace GenMaze
 {
     public class Maze
     {
         private Cell[,] Fields { get; }
-        public int Height { get { return Fields.GetLength(0); } }
-        public int Width { get { return Fields.GetLength(1); } }
+        public int Height => Fields.GetLength(0);
+        public int Width => Fields.GetLength(1);
+
         public Maze(int height, int width)
         {
             if (height >= 3 && width >= 3)
@@ -24,9 +19,19 @@ namespace GenMaze
             }
         }
 
+        public Cell[,] GetMaze()
+        {
+            return Fields;
+        }
+
+        public Cell GetCell(int x, int y)
+        {
+            return Fields[x, y];
+        }
+
         private Cell[,] FillingMaze(int height, int width)
         {
-            Cell[,] fields = new Cell[height, width]; 
+            var fields = new Cell[height, width];
             for (var i = 0; i < height; i++)
             {
                 for (var j = 0; j < width; j++)
@@ -43,11 +48,6 @@ namespace GenMaze
             }
 
             return fields;
-        }
-
-        public Cell[,] GetMaze()
-        {
-            return Fields;
         }
     }
 }
